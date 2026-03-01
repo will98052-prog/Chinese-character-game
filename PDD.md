@@ -38,13 +38,14 @@ As a beginner learner, I want to see a simple Chinese character and type its mea
 - The system returns immediate feedback:
   - `Correct` when answer matches.
   - `Incorrect` when answer does not match.
-- The system shows the next prompt after feedback.
+- The system uses a manual Next interaction: it does not auto-advance after feedback.
 
 ### 6.2 Input and Validation
 
 - Accept typed text input.
 - Trim whitespace before checking answers.
 - Match answers case-insensitively.
+- Use a normalized exact policy: normalize whitespace, punctuation, and leading articles before exact comparison.
 - Support multiple accepted English meanings per Chinese prompt.
 - On incorrect answers, display at least one accepted meaning.
 
@@ -64,19 +65,20 @@ As a beginner learner, I want to see a simple Chinese character and type its mea
   - Correct count
   - Incorrect count
   - Accuracy percentage
+- Persist session stats and preferences in localStorage.
 
 ## 7) UX Requirements
 
 - Single-page experience optimized for desktop and mobile.
 - Keep UI minimal and focused on one action per screen.
 - Show visible feedback state after each submission.
-- Provide a clear "Next" action (auto-advance or button).
-- Include optional hint toggle (e.g., reveal pinyin).
+- Provide a clear manual Next action via button.
+- Include optional pinyin hint toggle and persist this preference between reloads.
 
 ## 8) Technical Requirements
 
 - Implement as a web application.
-- Frontend can be any modern framework (or vanilla JS) with fast load time.
+- Stack is locked to vanilla HTML/CSS/JS for v1.
 - Store vocabulary data in a local JSON file for V1.
 - No backend required for V1 (client-side logic is acceptable).
 

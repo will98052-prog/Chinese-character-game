@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Chinese Meaning Quiz</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main id="app">
+      <h1 id="prompt"></h1>
+      <p id="pinyin"></p>
+      <label for="answerInput">English meaning</label>
+      <input id="answerInput" type="text" autocomplete="off" />
+      <div class="actions">
+        <button id="submitBtn" type="button">Submit</button>
+        <button id="nextBtn" type="button" disabled>Next</button>
+      </div>
+      <button id="pinyinToggle" type="button">Show Pinyin</button>
+      <p id="feedback" aria-live="polite"></p>
+    </main>
+  </body>
+</html>

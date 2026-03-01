@@ -1,0 +1,38 @@
+{
+  "mcp": {
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "enabled": true
+    },
+    "brave-search": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "environment": {
+        "BRAVE_API_KEY": "BSAFguGzyekV6hwrxg2HLMSIaCklJEn"
+      }
+    },
+    "prompts_chat_http": {
+      "type": "remote",
+      "url": "https://prompts.chat/api/mcp"
+    },
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true
+    },
+    "grep_app": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
+      "enabled": true
+    }
+  }
+}

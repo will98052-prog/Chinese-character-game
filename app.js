@@ -1,4 +1,4 @@
-import vocab from './data/vocab.easy.json' assert { type: 'json' }
+import vocab from './data/vocab.easy.json' with { type: 'json' }
 import { checkAnswer } from './src/check-answer.js'
 import { selectNextPrompt } from './src/select-next-prompt.js'
 import { createSessionStore } from './src/session-store.js'
@@ -23,7 +23,11 @@ function getUiElements(doc) {
     'submitBtn',
     'nextBtn',
     'pinyinToggle',
-    'feedback'
+    'feedback',
+    'statAnswered',
+    'statCorrect',
+    'statIncorrect',
+    'statAccuracy'
   ]
 
   const entries = ids.map((id) => [id, doc.getElementById(id)])
@@ -59,6 +63,18 @@ export function initializeApp(doc = document) {
 
   function renderPinyinToggle() {
     ui.pinyinToggle.textContent = session.showPinyin ? 'Hide Pinyin' : 'Show Pinyin'
+  }
+
+  function renderStats() {
+    const total = session.totalAnswered
+    const correct = session.correctCount
+    const incorrect = session.incorrectCount
+    const accuracy = total > 0 ? Math.round((correct / total) * 100) : 0
+
+    ui.statAnswered.textContent = String(total)
+    ui.statCorrect.textContent = String(correct)
+    ui.statIncorrect.textContent = String(incorrect)
+    ui.statAccuracy.textContent = `${accuracy}%`
   }
 
   function setFeedback(result) {
@@ -100,6 +116,7 @@ export function initializeApp(doc = document) {
       correctCount: session.correctCount + (isCorrect ? 1 : 0),
       incorrectCount: session.incorrectCount + (isCorrect ? 0 : 1)
     })
+    renderStats()
 
     ui.submitBtn.disabled = true
     ui.nextBtn.disabled = false
@@ -128,6 +145,7 @@ export function initializeApp(doc = document) {
 
   renderPrompt()
   renderPinyinToggle()
+  renderStats()
   resetRound()
 
   return {
